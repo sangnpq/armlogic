@@ -13,6 +13,10 @@ on:
         description: 'Kernel version: 5.10.79'
         required: false
         default: '5.10.79'
+      kernel_repo:
+        description: 'Kernel repo: kernel.org'
+        required: false
+        default: 'kernel.org'
       custom_name:
         description: 'Custom kernel name: meson64'
         required: false
@@ -72,6 +76,7 @@ jobs:
         else
             CUSTOM_NAME="meson64-beta"
         fi
+        echo "CUSTOM_NAME=${CUSTOM_NAME}" >> $GITHUB_ENV
 
     - name: Compile the Kernel ${{ env.KERNEL_VER }}
       id: compile
