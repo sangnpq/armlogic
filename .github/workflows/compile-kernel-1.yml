@@ -14,13 +14,13 @@ on:
         required: false
         default: '5.10.79'
       kernel_repo:
-        description: 'Kernel repo: kernel.org'
+        description: 'Kernel repo: kernel.org|flippy'
         required: false
-        default: 'kernel.org'
+        default: 'flippy'
       custom_name:
-        description: 'Custom kernel name: meson64'
+        description: 'Custom kernel name: -meson64'
         required: false
-        default: 'meson64'
+        default: '-meson64'
   #schedule:
     #- cron: '0 17 * * 0'
 
@@ -33,7 +33,7 @@ env:
   KEEP_DAY: 15
   KEEP_MININUM_RUNS: 0
   KEEP_MININUM_RELEASE: 3
-  TZ: Asia/Shanghai
+  TZ: Asia/Ho_Chi_Minh
 
 jobs:
   build:
@@ -74,7 +74,7 @@ jobs:
         if  [[ -n "${{ github.event.inputs.custom_name }}" ]]; then
             CUSTOM_NAME="${{ github.event.inputs.custom_name }}"
         else
-            CUSTOM_NAME="meson64-beta"
+            CUSTOM_NAME="-meson64-beta"
         fi
         echo "CUSTOM_NAME=${CUSTOM_NAME}" >> $GITHUB_ENV
 
@@ -110,5 +110,3 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
           The kernel can be used to compile Armbian and OpenWer.
-          
-        
